@@ -6,29 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="jass.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Major+Mono+Display&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Coding Assessment Quiz</title>
 </head>
 <body>
-    <header>
-        <div class="large-font">Coding Assessment Challenge</div>
-    </header>
-    <main>
-        <section>
-            <p>Click "Start" to test your coding knowledge!</p>
-        <button class="start-button">Start</button>
+    <div id="highScores"></div>
+      <div id="header-box"></div>       
+        <button id="scores" href="">High Scores</button>   
+        <div id="timeCount"><p>Time: <span id="time">0</span></p>
+        </div>
+   <div id="mainScreen"></div>
+    <section id="welcome-screen">
+        <h1>Welcome to the Coding Assessment Challenge!</h1>
+        <p>Do your best to answer the following questions within the given time limit.
+            Hit "Start" to begin. Good luck!
+        </p>
+        <button>Start</button>
+    </section>
 
+    <section id="questionIndex" class="hide">
+        <p id="questionTitle"></p>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <div id="scoreTally" class="invisible"></div>
+    </section>
 
+    <section id="complete" class="hide">
+        <h1>Quiz Completed!</h1>
+        <p>Your final score is: <span id="score"></span></p>
+        <div id="userInput">       
+        <p>Enter initials: </p><input id="initials" type="text"> 
+        <button>Submit</button>
+        </div>
+    </section>
 
+    <section id="userHighScores" class="hide">
+        <h1>High Scores</h1>
+        <button id="reset">Go Back</button> <button id="clearScores">Clear All High Scores</button>
 
-
-        </section>
-
-
-
-
-
-
-
+    </section>
 
     </main>
     <script src="script.js"></script>

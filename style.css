@@ -1,4 +1,17 @@
 /* Universal element */
 * {
+    font-family: 'Montserrat', sans-serif;
+    height: auto;
+    font-weight: bolder;
+}
+
+header {
+    padding: 5px;
+    font-weight: 500;
+    flex: auto;
+    justify-content: center;
+}
+
+#header-box {
     
 }

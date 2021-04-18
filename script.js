@@ -1,13 +1,15 @@
 // Variables
 var startButton = document.querySelector(".start-button");
-var timer;
-var timerCountEl = document.querySelector(".timer-count");
+var timer = 60;
+var timerCountEl = document.querySelector("#timer-count");
 var questions;
+var questionCount = 0;
 var userInput;
 var answerCorrect;
-var score;
+var score = 0;
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
+var highScores;
 
 var questions = [
     {
@@ -32,4 +34,5 @@ var questions = [
     },
 ]; 
 console.log(questions[3].question);
+
 
