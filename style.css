@@ -14,6 +14,10 @@ header {
     align-items: left;
 }
 
+h1 {
+    
+}
+
 #header-box {
     display: grid;
     align-items: center;
@@ -22,4 +26,16 @@ header {
 #scores {
     display: grid;
     align-self: left;
+}
+
+body {
+    background-color: #bbdeff;
+    grid-template-columns: auto;
+    flex: auto;
+
+}
+
+#welcome-screen {
+    flex: auto;
+    align-items: center;
 }
