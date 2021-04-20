@@ -10,22 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Major+Mono+Display&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Coding Assessment Quiz</title>
 </head>
-<body>
-    <div id="highScores"></div>
+    <header>
+    <div id="container-header"></div>
       <div id="header-box"></div>       
         <button id="scores" href="">High Scores</button>   
-        <div id="timeCount"><p>Time: <span id="time">0</span></p>
+        <div id="timer"><p>Time: <span id="time">0</span></p>
         </div>
+    </header>    
+<body>        
    <div id="mainScreen"></div>
     <section id="welcome-screen">
         <h1>Welcome to the Coding Assessment Challenge!</h1>
         <p>Do your best to answer the following questions within the given time limit.
             Hit "Start" to begin. Good luck!
         </p>
-        <button>Start</button>
+        <button id="start-button">Start</button>
     </section>
 
-    <section id="questionIndex" class="hide">
+    <section id="questionArray" class="hide">
         <p id="questionTitle"></p>
         <button></button>
         <button></button>

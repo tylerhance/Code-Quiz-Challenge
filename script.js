@@ -1,7 +1,7 @@
 // Variables
-var startButton = document.querySelector(".start-button");
-var timer = 60;
-var timerCountEl = document.querySelector("#timer-count");
+var startButton = document.querySelector("#start-button");
+var startTimer = 60;
+var timer = document.querySelector("#timer");
 var questions;
 var questionCount = 0;
 var userInput;
@@ -10,8 +10,9 @@ var score = 0;
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var highScores;
+var answers = document.querySelector("")
 
-var questions = [
+const questions = [
     {
         question: "What is an array?", 
         choices: ["An ordered list of values.", "An action performed on objects.", "A behaviour declaration", "The properties of all HTML elements."], 
@@ -35,4 +36,24 @@ var questions = [
 ]; 
 console.log(questions[3].question);
 
+var score = 0;
+var questionArray = 0;
 
+var timer = document.querySelector("#timer");
+var startButton = document.querySelector("#start-button");
+var questionArray = document.querySelector("questionArray");
+var wrapper = document.querySelector("wrapper");
+
+
+// Variables set to hold high scores locally
+let highScoreArray = [];
+// Show the high score if it exists/hasn't been cleared out by user.
+(localStorage.getItem("highScoreArray")) ? highScoreArray = JSON.parse(localStorage.getItem("highScoreArray")): highScoreArray = [];
+
+function init() {
+    startButton.addEventListener('click', event => {
+        event.preventDefault()
+        displayQuestionPage()
+      
+  })
+    answers.addEventListener
