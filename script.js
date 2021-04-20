@@ -6,12 +6,12 @@ var questionCount = 0;
 var answerCorrect;
 var score = 0;
 var highScores;
-var timer = document.querySelector("#timer");
+var timerEl = document.querySelector("#timer");
 var startButton = document.querySelector("#start-button");
 var questionArray = document.querySelector("questionArray");
 var wrapper = document.querySelector("wrapper");
 var answer;
-
+var startQuiz;
 
 var questions = [
     {
@@ -53,18 +53,20 @@ let highScoreArray = [];
 (localStorage.getItem("highScoreArray")) ? highScoreArray = JSON.parse(localStorage.getItem("highScoreArray")): highScoreArray = [];
 */
 
+startQuiz.addEventListener("click", startTimer);
+
 // Function goes through array of objects to populate quiz questions
-function startQuiz() {
-    isWin = false;
+/*function startQuiz(event) {
+    addEventListener("click", startQuiz)
     timerCount = 60;
     startTimer()
-}
+}*/
 
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
       timerCount--;
-      timerElement.textContent = timerCount;
+      timerEl.textContent = timerCount;
       if (timerCount >= 0) {
         // Tests if win condition is met
         if (isWin && timerCount > 0) {
@@ -85,5 +87,3 @@ function startTimer() {
   // Attach event listener to start button to call startGame function on click
 startButton.addEventListener("click", startQuiz);
 
-// Calls init() so that it fires when page opened
-//init();

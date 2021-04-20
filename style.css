@@ -18,7 +18,7 @@ h1 {
     
 }
 
-#header-box {
+#frontpage {
     display: grid;
     align-items: center;
 }
@@ -35,7 +35,7 @@ body {
 
 }
 
-#welcome-screen {
+#welcome { 
     flex: auto;
     align-items: center;
 }
