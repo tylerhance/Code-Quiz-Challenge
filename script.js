@@ -38,11 +38,11 @@ var questions = [
 console.log(questions[3].question);
 console.log(questions[3].answer);
 
-
+// create eventlistener for all the questions with the target for all the buttons
 // Global variables
 var score = 0;
 var questionIndex = 0;
-var TimeRemain = 60;
+var TimeRemain = 75;
 var timerInterval;
 var answerCorrect;
 var penalty = 10;
