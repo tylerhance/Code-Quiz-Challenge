@@ -1,17 +1,18 @@
 // Variables
-var startButton = document.querySelector("#start-button");
-var startTimer = 60;
-var timer = document.querySelector("#timer");
+var startButton = document.getElementById("#start-button");
+var startTimer = 75;
+var timer = document.getElementById("#timer");
 var questionCount = 0;
 var answerCorrect;
 var score = 0;
 var highScores;
-var timerEl = document.querySelector("#timer");
-var startButton = document.querySelector("#start-button");
-var questionArray = document.querySelector("questionArray");
-var wrapper = document.querySelector("wrapper");
+var timerEl = document.getElementById("#timer");
+var startButton = document.getElementById("#start-button");
+var questionIndex = document.getElementById("#questionIndex");
+var wrapper = document.getElementById("wrapper");
 var answer;
 var startQuiz;
+var highScoreArray = document.getElementById("highScoreArray")
 
 var questions = [
     {
@@ -47,43 +48,19 @@ var timerInterval;
 var answerCorrect;
 var penalty = 10;
 
-/*// Variables set to hold high scores locally
-let highScoreArray = [];
-// Show the high score if it exists/hasn't been cleared out by user.
-(localStorage.getItem("highScoreArray")) ? highScoreArray = JSON.parse(localStorage.getItem("highScoreArray")): highScoreArray = [];
-*/
-
-startQuiz.addEventListener("click", startTimer);
-
-// Function goes through array of objects to populate quiz questions
-/*function startQuiz(event) {
-    addEventListener("click", startQuiz)
-    timerCount = 60;
-    startTimer()
-}*/
-
 function startTimer() {
-    // Sets timer
-    timer = setInterval(function() {
-      timerCount--;
-      timerEl.textContent = timerCount;
-      if (timerCount >= 0) {
-        // Tests if win condition is met
-        if (isWin && timerCount > 0) {
-          // Clears interval and stops timer
-          clearInterval(timer);
-          winGame();
-        }
-      }
-      // Tests if time has run out
-      if (timerCount === 0) {
-        // Clears interval
-        clearInterval(timer);
-        loseGame();
-      }
+    displayQuestions();
+    let timerInterval = setInterval(function() {
+      secondsLeft--;
+      timer.textContent = "";
+      timer.textContent = "Time: " + secondsLeft;
+      if (secondsLeft <= 0 || questionCount === questions.length) {
+        clearInterval(timerInterval);
+        captureUserScore();
+      } 
     }, 1000);
   }
-    
-  // Attach event listener to start button to call startGame function on click
-startButton.addEventListener("click", startQuiz);
 
+
+
+  startButton.addEventListener("click", startQuiz);
