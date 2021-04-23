@@ -68,10 +68,6 @@ function generateQuizQuestion(){
     if (currentQuestionIndex === questions.length){
         showScore();
     }}
-    
-
-
-
 
 // Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
 function startQuiz() {
