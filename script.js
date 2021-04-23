@@ -3,7 +3,7 @@ var quizEl = document.getElementById("quiz");
 var determineEl = document.getElementById("determine");
 var finalScoreEl = document.getElementById("final-score");
 var quizCompleteEl = document.getElementById("quizComplete");
-var timer = document.getElementById("timer");
+var timer = document.getElementById("currentTime");
 var startButtonEl = document.getElementById("start-button");
 var welcomePageEl = document.getElementById("welcome-page");
 var highScoreContainerEl = document.getElementById("hsContainer");
@@ -18,9 +18,10 @@ var buttonA = document.getElementById("A");
 var buttonB = document.getElementById("B");
 var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
+var checkAnswer = document.querySelectorAll(".checkAnswer");
 
 // Global variables
-var finalQuestionIndex = questions.length;
+
 var currentQuestionIndex = 0;
 var timeLeft = 75;
 var timerInterval;
@@ -54,19 +55,23 @@ var questions = [
 //console.log(questions[3].question);
 ///console.log(questions[3].answer);
 
+
 // Function for moving through the questions array and generate the questions and answers.
 function generateQuizQuestion(){
+    console.log(questions[currentQuestionIndex])
     quizCompleteEl.style.display = "none";
-    if (currentQuestionIndex === finalQuestionIndex){
-        return showScore();
-    }
-}
-var currentQuestion = questions[currentQuestionIndex];
-questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
-buttonA.innerHTML = questions.choices[0];
-buttonB.innerHTML = questions.choices[2];
-buttonC.innerHTML = questions.choices[3];
-buttonD.innerHTML = questions.choices[1];
+    questionsEl.innerHTML = "<p>" + questions[currentQuestionIndex].question + "</p>";
+    buttonA.innerHTML = questions[currentQuestionIndex].choices[0];
+    buttonB.innerHTML = questions[currentQuestionIndex].choices[2];
+    buttonC.innerHTML = questions[currentQuestionIndex].choices[3];
+    buttonD.innerHTML = questions[currentQuestionIndex].choices[1];
+    if (currentQuestionIndex === questions.length){
+        showScore();
+    }}
+    
+
+
+
 
 // Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
 function startQuiz() {
@@ -100,7 +105,7 @@ function startQuiz() {
     submitScoreButton.addEventListener("click", function highscore(){
 
         if (userHighScoreInput.value === "") {
-        prompt("Initials can't be blank.");
+        alert("Initials can't be blank.");
         return false;
     } else {
         var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
@@ -162,15 +167,15 @@ function replayQuiz() {
 
 // Function for verifying answer
 function verifyAnswer(answer){
-    correct = questions[currentQuestionIndex].correctAnswer;
-
-    if (answer === correct && currentQuestionIndex !== finalQuestionIndex){
+    correct = questions[currentQuestionIndex].answer;
+    if (answer === correct && currentQuestionIndex !== questions.length){
         score++;
-        prompt("Correct!");
+        alert("Correct!");
         currentQuestionIndex++;
+        console.log(currentQuestionIndex)
         generateQuizQuestion();
-    } else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex){
-        prompt("Wrong!");
+    } else if (answer !== correct && currentQuestionIndex !== questions.length){
+        alert("Wrong!");
         currentQuestionIndex++
         generateQuizQuestion();
     } else {
@@ -180,3 +185,12 @@ function verifyAnswer(answer){
 
 // Button to start quiz
 startButtonEl.addEventListener("click", startQuiz);
+
+
+checkAnswer.forEach(function (answer){
+    answer.addEventListener("click", function(event){
+        event.preventDefault();
+        var answerText = event.target.textContent
+        verifyAnswer(answerText);
+    })
+})
