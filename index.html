@@ -13,47 +13,48 @@
     <header>
     <div id="container">
              
-        <button id="highScores" href="">High Scores</button>   
-        <div id="timer"><p>Time: <span id="time">0</span></p>
+        <section id="welcome-page">
+            <h1>Welcome to the Coding Assessment Quiz! This is a timed quiz to test
+                your coding knowledge. Be warned, an incorrect answer will result in a penalty.
+                Hit the 'Start' button to begin. Good luck!</h1>
+                <button id="start-button">Start Quiz</button>
+                <button id="hs-button">High Scores</button>
+        </section>
+</header>
+<!-- Container for holding all the questions/timer and determining if answer is correct or not -->
+    <section id="quiz">
+        <div id="currentTime">Time :</div>
+        <div id="questions"><p>Questions</p></div>
+            <button id="A" onclick="checkAnswer('A')">A</button>
+            <button id="B" onclick="checkAnswer('B')">B</button>
+            <button id="C" onclick="checkAnswer('C')">C</button>
+            <button id="D" onclick="checkAnswer('D')">D</button>
+        <div id="determine"></div>
+    </section>
+<!-- Container created for entering initials and submitting user score -->
+<section id="quizComplete">
+
+    <div id="final-score"></div>
+    <input type="text" size="50" placeholder="Enter initials here" name="initials" id="initials"/>
+    <button id="submitScore">Submit Score</button>
+</section>
+<!--- Created id for keeping track of user high scores -->
+<section id="hsContainer">
+    <div id="highScores">
+        <div id="hs-header">
+            <h2>User Initials</h2>
+            <h2>Total Score</h2>
         </div>
-    </header>    
-<body>        
-   <div id="main"></div>
-    <section id="welcome-page">
-        <h1>Welcome to the Coding Assessment Quiz!</h1>
-        <p>Do your best to answer the following questions within the given time limit.
-            Keep in mind, if you answer a question wrong, you will be penalized!
-            Hit "Start" to begin. Good luck, you got this!
-        </p>
-        <button id="start-button">Start Quiz</button>
-    </section>
-
-    <section id="questionIndex" class="hide">
-        <p id="questionTitle"></p>
-        <button></button>
-        <button></button>
-        <button></button>
-        <button></button>
-        <div id="scoreTally" class="invisible"></div>
-    </section>
-
-    <section id="complete" class="hide">
-        <h1>Quiz Completed!</h1>
-        <p>Your final score is: <span id="score"></span></p>
-        <div id="userInput">       
-        <p>Enter initials: </p><input id="initials" type="text"> 
-        <button>Submit</button>
-        </div>
-    </section>
-
-    <section id="userHighScores" class="hide">
-        <h1>High Scores</h1>
-        <button id="reset">Go Back</button> <button id="clearScores">Clear All High Scores</button>
-
-    </section>
-
-    </main>
+        <div id="userHighScore"></div>
+        <div id="hs-initials"></div>
     </div>
-    <script src="script.js"></script>
+</section>
+<!-- Container for the end of the quiz; Asking user to submit score/play again -->
+    <section id="endQuizButton">
+        <button id="replay" onclick="replayQuiz()">Play Again?</button>
+        <button id="clearScore" onclick="clearScore()">Clear High Scores</button>
+    </section>        
+</div>
+<script src="script.js"></script>
 </body>
-</html> 
+</html>
