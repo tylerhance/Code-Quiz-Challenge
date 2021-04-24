@@ -39,3 +39,8 @@ body {
     flex: auto;
     align-items: center;
 }
+
+#final-score {
+    display: flex;
+    align-items: center;
+}

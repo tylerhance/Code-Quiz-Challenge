@@ -19,9 +19,10 @@ var buttonB = document.getElementById("B");
 var buttonC = document.getElementById("C");
 var buttonD = document.getElementById("D");
 var checkAnswer = document.querySelectorAll(".checkAnswer");
+//var replayQuiz = document.querySelectorAll(".replayQuiz");
+var clearScore = document.querySelectorAll(".clearScore");
 
 // Global variables
-
 var currentQuestionIndex = 0;
 var timeLeft = 75;
 var timerInterval;
@@ -58,16 +59,20 @@ var questions = [
 
 // Function for moving through the questions array and generate the questions and answers.
 function generateQuizQuestion(){
-    console.log(questions[currentQuestionIndex])
     quizCompleteEl.style.display = "none";
+    if (currentQuestionIndex === questions.length){
+        showScore();
+    }
+    console.log(questions[currentQuestionIndex])
+    //quizCompleteEl.style.display = "none";
     questionsEl.innerHTML = "<p>" + questions[currentQuestionIndex].question + "</p>";
     buttonA.innerHTML = questions[currentQuestionIndex].choices[0];
     buttonB.innerHTML = questions[currentQuestionIndex].choices[2];
     buttonC.innerHTML = questions[currentQuestionIndex].choices[3];
     buttonD.innerHTML = questions[currentQuestionIndex].choices[1];
-    if (currentQuestionIndex === questions.length){
-        showScore();
-    }}
+    //if (currentQuestionIndex === questions.length){
+        //showScore();
+    }
 
 // Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
 function startQuiz() {
@@ -76,6 +81,7 @@ function startQuiz() {
     generateQuizQuestion();
 
     // Timer function
+
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = "Time: " + timeLeft;
@@ -94,7 +100,7 @@ function startQuiz() {
         quizCompleteEl.style.display = "flex";
         clearInterval(timerInterval);
         userHighScoreInput.value = "";
-        finalScoreEl.innerHTML = "Well don, your score is: " + score + " out of " + questions.length + " correct!";
+        finalScoreEl.innerHTML = "Well done, your score is: " + score + " out of " + questions.length + " correct!";
     }
 
     // The submit button runs the function to save high scores and stringifies the high score arrays saved in local storage.
@@ -188,5 +194,5 @@ checkAnswer.forEach(function (answer){
         event.preventDefault();
         var answerText = event.target.textContent
         verifyAnswer(answerText);
-    })
+    });
 })

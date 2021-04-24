@@ -35,24 +35,24 @@
 <section id="quizComplete">
 
     <div id="final-score"></div>
-    <input type="text" size="50" placeholder="Enter initials here" name="initials" id="initials"/>
-    <button id="submitScore">Submit Score</button>
 </section>
 <!--- Created id for keeping track of user high scores -->
 <section id="hsContainer">
     <div id="highScores">
         <div id="hs-header">
-            <h2>User Initials</h2>
-            <h2>Total Score</h2>
+            <h2>Total Score:</h2>
+            <h2>User Initials:</h2>
         </div>
         <div id="userHighScore"></div>
         <div id="hs-initials"></div>
+        <input type="text" size="50" placeholder="Enter initials here" name="initials" id="initials"/>
+    <button id="submitScore">Submit Score</button>
     </div>
 </section>
 <!-- Container for the end of the quiz; Asking user to submit score/play again -->
     <section id="endQuizButton">
-        <button id="replay" onclick="replayQuiz()">Play Again?</button>
-        <button id="clearScore" onclick="clearScore()">Clear High Scores</button>
+        <button id="replay" class="replayQuiz">Play Again</button>
+        <button id="clearScore" class="clearScore">Clear High Scores</button>
     </section>        
 </div>
 <script src="script.js"></script>
