@@ -8,6 +8,7 @@ var startButtonEl = document.getElementById("start-button");
 var welcomePageEl = document.getElementById("welcome-page");
 var highScoreContainerEl = document.getElementById("hsContainer");
 var highScoresEl = document.getElementById("highScores");
+var highScoreBtn = document.getElementById("#hs-button");
 var userHighScoreInput = document.getElementById("initials");
 var highScoreDisplayName = document.getElementById("hs-initials");
 var endQuizButton = document.getElementById("endQuizButton");
@@ -24,7 +25,7 @@ var clearScore = document.querySelectorAll(".clearScore");
 
 // Global variables
 var currentQuestionIndex = 0;
-var timeLeft = 75;
+var timeLeft = 30;
 var timerInterval;
 var score = 0;
 var correct;
@@ -56,23 +57,20 @@ var questions = [
 //console.log(questions[3].question);
 ///console.log(questions[3].answer);
 
-
 // Function for moving through the questions array and generate the questions and answers.
 function generateQuizQuestion(){
     quizCompleteEl.style.display = "none";
     if (currentQuestionIndex === questions.length){
-        showScore();
+        return showScore();
     }
     console.log(questions[currentQuestionIndex])
     //quizCompleteEl.style.display = "none";
-    questionsEl.innerHTML = "<p>" + questions[currentQuestionIndex].question + "</p>";
+    questionsEl.innerHTML = "<p>" + questions[currentQuestionIndex].question + "</p>"
     buttonA.innerHTML = questions[currentQuestionIndex].choices[0];
     buttonB.innerHTML = questions[currentQuestionIndex].choices[2];
     buttonC.innerHTML = questions[currentQuestionIndex].choices[3];
     buttonD.innerHTML = questions[currentQuestionIndex].choices[1];
-    //if (currentQuestionIndex === questions.length){
-        //showScore();
-    }
+    };
 
 // Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
 function startQuiz() {
@@ -81,7 +79,6 @@ function startQuiz() {
     generateQuizQuestion();
 
     // Timer function
-
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = "Time: " + timeLeft;
@@ -100,7 +97,7 @@ function startQuiz() {
         quizCompleteEl.style.display = "flex";
         clearInterval(timerInterval);
         userHighScoreInput.value = "";
-        finalScoreEl.innerHTML = "Well done, your score is: " + score + " out of " + questions.length + " correct!";
+        finalScoreEl.innerHTML = "That's it, you got " + score + " out of " + questions.length + " correct!";
     }
 
     // The submit button runs the function to save high scores and stringifies the high score arrays saved in local storage.
@@ -119,7 +116,7 @@ function startQuiz() {
     // Saves the user input for initials and their high score into local storage, then projects the high scores.    
         quizCompleteEl.style.display = "none";
         highScoreContainerEl.style.display = "flex";
-        highScoreContainerEl.style.display = "block";
+        highScoresEl.style.display = "block";
         endQuizButton.style.display = "flex";
 
         savedHighScores.push(currentHighScore);
@@ -186,7 +183,7 @@ function verifyAnswer(answer){
 }
 
 // Button to start quiz
-startButtonEl.addEventListener("click", startQuiz);
+startButtonEl.addEventListener("click", startQuiz)
 
 
 checkAnswer.forEach(function (answer){
@@ -196,3 +193,4 @@ checkAnswer.forEach(function (answer){
         verifyAnswer(answerText);
     });
 })
+

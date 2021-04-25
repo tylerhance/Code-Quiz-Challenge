@@ -44,3 +44,23 @@ body {
     display: flex;
     align-items: center;
 }
+
+button {
+        background-color: #904cf7;
+        border: solid black 2px;
+        color: white;
+        padding: 12px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;   
+        justify-content: space-around;
+}
+
+li {
+    list-style: circle;
+}
+
+#initials {
+    padding: 8px;
+}
