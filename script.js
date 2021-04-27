@@ -102,41 +102,42 @@ function compare(event) {
       }
     }
 
-    // The submit button runs the function to save high scores and stringifies the high score arrays saved in local storage.
-    submitScoreButton.addEventListener("click", function highscore(){
-
-        if (userHighScoreInput.value === "") {
-        alert("Initials can't be blank.");
-        return false;
-    } else {
-        var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
-        var currentUser = userHighScoreInput.value.trim();
-        var currentHighScore = {
-            name : currentUser,
-            score : score
-        };
-    // Saves the user input for initials and their high score into local storage, then projects the high scores.    
-        quizCompleteEl.style.display = "none";
-        highScoreContainerEl.style.display = "flex";
-        endQuizButton.style.display = "flex";
-
-        savedHighScores.push(currentHighScore);
-        localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
-        generateHighScores();
+    // Function to compare choices with answer/ alerts user if correct/incorrect. Uses DOM manipulation to create new elements as divs
+function compare(event) {
+    var element = event.target;
+  
+    if (element.matches("li")) {
+      var createDiv = document.createElement("div");
+      createDiv.setAttribute("id", "createDiv");
+      // If correct condition
+      if (element.textContent == questions[questionIndex].answer) {
+        score++;
+        alert("Correct!");
+      } else {
+        // Deducts -10 seconds off secondsLeft for incorrect answers
+        secondsLeft = secondsLeft - penalty;
+        alert("Wrong!");
+      }
     }
-});
 
-// Function for clearing previous high scores and refreshes a new list
-function generateHighScores(){
-    highScoreDisplayName.innerHTML = "";
-    displayHighScore.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
-    for (i = 0; i < highscores.length; i++){
-        var newName = document.createElement("li");
-        var newScore = document.createElement("li");
-        displayHighScore.appendChild(newScore);
-        highScoreDisplayName.appendChild(newName);
-    }
+// Question Index determines number question user is on
+questionIndex++;
+
+if (questionIndex >= questions.length) {
+  // quizEnd will append last page with user stats
+  quizEnd();
+  createDiv.textContent =
+    "Quiz Complete!" +
+    " " +
+    "You got  " +
+    score +
+    "/" +
+    questions.length +
+    " Correct!";
+} else {
+  render(questionIndex);
+}
+questionsDiv.appendChild(createDiv);
 }
 
 // Function shows high score page while hiding other pages.
