@@ -22,22 +22,22 @@ var penalty = 10;
 // Quiz question object/array
 var questions = [
     {
-        question: "What is an array?", 
+        title: "What is an array?", 
         choices: ["An ordered list of values.", "An action performed on objects.", "A behaviour declaration", "The properties of all HTML elements."], 
         answer: "An ordered list of values."  
     },
     {
-        question: "JavaScript is primarily used in the browser, enabling developers to manipulate webpage content through the ____?", 
+        title: "JavaScript is primarily used in the browser, enabling developers to manipulate webpage content through the ____?", 
         choices: ["Terminal", "Code Editor", "DOM", "Browser"], 
         answer: "DOM"   
     },
     {
-        question: "A string, number, bigint, boolean, undefined, symbol, and null are what kind of data types?", 
+        title: "A string, number, bigint, boolean, undefined, symbol, and null are what kind of data types?", 
         choices: ["Reference", "Comparisons", "Assignment", "Primitive"], 
         answer: "Primitive"   
     },
     {
-        question: "The named values in JavaScript objects, are called ______?", 
+        title: "The named values in JavaScript objects, are called ______?", 
         choices: ["Methods", "Properties", "Actions", "Constructors"], 
         answer: "Properties"   
     },
@@ -62,32 +62,44 @@ timer.addEventListener("click", function () {
     render(questionIndex);
   });
 
-// Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
-function startQuiz() {
-    quizCompleteEl.style.display = "none";
-    startButtonEl.style.display = "none";
-    generateQuizQuestion();
-
-    // Timer function
-    timerInterval = setInterval(function() {
-        timeLeft--;
-        timer.textContent = "Time: " + timeLeft;
-
-        if (timeLeft === 0) {
-            clearInterval(timerInterval);
-            showScore();
-        }
-        }, 1000);
-        quizEl.style.display = "block";
+// Function to generate the questions from the questions object/array
+function render(questionIndex) {
+    // Clears existing data
+    questionsDiv.innerHTML = "";
+    ulCreate.innerHTML = "";
+    // Loops through all questions in array
+    for (var i = 0; i < questions.length; i++) {
+      // Appends question title only
+      var userQuestion = questions[questionIndex].title;
+      var userChoices = questions[questionIndex].choices;
+      questionsDiv.textContent = userQuestion;
     }
+    // New 'forEach' implemented for question choices
+    userChoices.forEach(function (newItem) {
+      var listItem = document.createElement("li");
+      listItem.textContent = newItem;
+      questionsDiv.appendChild(ulCreate);
+      ulCreate.appendChild(listItem);
+      listItem.addEventListener("click", compare);
+    });
+  }
 
-    // Function for end of quiz displaying score and asking user to enter initials
-    function showScore(){
-        quizEl.style.display = "none";
-        quizCompleteEl.style.display = "flex";
-        clearInterval(timerInterval);
-        userHighScoreInput.value = "";
-        finalScoreEl.innerHTML = "That's it, you got " + score + " out of " + questions.length + " correct!";
+// Function to compare choices with answer/ alerts user if correct/incorrect
+function compare(event) {
+    var element = event.target;
+  
+    if (element.matches("li")) {
+      var createDiv = document.createElement("div");
+      createDiv.setAttribute("id", "createDiv");
+      // If correct condition
+      if (element.textContent == questions[questionIndex].answer) {
+        score++;
+        alert("Correct!");
+      } else {
+        // Deducts -10 seconds off secondsLeft for incorrect answers
+        secondsLeft = secondsLeft - penalty;
+        alert("Wrong!");
+      }
     }
 
     // The submit button runs the function to save high scores and stringifies the high score arrays saved in local storage.
