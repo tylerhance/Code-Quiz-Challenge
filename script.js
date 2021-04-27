@@ -1,4 +1,3 @@
-// HTML elements gathered for DOM manipulation
 // Declared variables and HTML elements for DOM manipulation
 var score = 0;
 var questionIndex = 0;
@@ -102,24 +101,6 @@ function compare(event) {
       }
     }
 
-    // Function to compare choices with answer/ alerts user if correct/incorrect. Uses DOM manipulation to create new elements as divs
-function compare(event) {
-    var element = event.target;
-  
-    if (element.matches("li")) {
-      var createDiv = document.createElement("div");
-      createDiv.setAttribute("id", "createDiv");
-      // If correct condition
-      if (element.textContent == questions[questionIndex].answer) {
-        score++;
-        alert("Correct!");
-      } else {
-        // Deducts -10 seconds off secondsLeft for incorrect answers
-        secondsLeft = secondsLeft - penalty;
-        alert("Wrong!");
-      }
-    }
-
 // Question Index determines number question user is on
 questionIndex++;
 
@@ -140,60 +121,81 @@ if (questionIndex >= questions.length) {
 questionsDiv.appendChild(createDiv);
 }
 
-// Function shows high score page while hiding other pages.
-function showHighScore(){
-    welcomePageEl.style.display = "none";
-    quizCompleteEl.style.display = "none";
-    highScoreContainerEl.style.display = "flex";
-    highScoresEl.style.display = "block";
-    endQuizButton.style.display = "flex";
-}
-
-// Function clears the local storage of high scores and user input from score board
-function clearScore(){
-    window.localStorage.clear();
-    highScoreDisplayName.textContent = "";
-    displayHighScore.textContent = "";
-}
-
-// Function for replaying quiz/ button will reset all variables
-function replayQuiz() {
-    hsContainer.style.display = "none";
-    quizCompleteEl.style.display = "none";
-    welcomePageEl.style.display = "flex";
-    timeLeft = 75;
-    score = 0;
-    currentQuestionIndex = 0;
-}
-
-// Function for verifying answer
-function verifyAnswer(answer){
-    correct = questions[currentQuestionIndex].answer;
-    if (answer === correct && currentQuestionIndex !== questions.length){
-        score++;
-        alert("Correct!");
-        currentQuestionIndex++;
-        console.log(currentQuestionIndex)
-        generateQuizQuestion();
-    } else if (answer !== correct && currentQuestionIndex !== questions.length){
-        alert("Wrong!");
-        currentQuestionIndex++
-        generateQuizQuestion();
-    } else {
-        showScore();
+// Function to append last page / Entails DOM manipulation to create and append data and user input requests
+function quizEnd() {
+    questionsDiv.innerHTML = "";
+    currentTime.innerHTML = "";
+  
+    // Creates new heading when quiz is complete
+    var createH1 = document.createElement("h1");
+    createH1.setAttribute("id", "createH1");
+    createH1.textContent =
+      "Great Job! Enter your initials below to save your score!";
+  
+    questionsDiv.appendChild(createH1);
+  
+    // Creates a new paragraph in quiz container when quiz is complete
+    var createPar = document.createElement("p");
+    createPar.setAttribute("id", "createPar");
+  
+    questionsDiv.appendChild(createPar);
+  
+    // Calculates time remaining and replaces it with the user score
+    if (secondsLeft >= 0) {
+      var timeRemaining = secondsLeft;
+      var createPar2 = document.createElement("p");
+      clearInterval(holdInterval);
+      createPar.textContent = "Your final score is: " + timeRemaining;
+  
+      questionsDiv.appendChild(createPar2);
     }
-}
-
-// Button to start quiz
-startButtonEl.addEventListener("click", startQuiz)
-
-
-checkAnswer.forEach(function (answer){
-    answer.addEventListener("click", function(event){
-        event.preventDefault();
-        var answerText = event.target.textContent
-        verifyAnswer(answerText);
+  
+    // Creates a label for 'enter your initials' to guide user toward actual input field
+    var createLabel = document.createElement("label");
+    createLabel.setAttribute("id", "createLabel");
+    createLabel.textContent = "Enter your initials: ";
+  
+    questionsDiv.appendChild(createLabel);
+  
+    // Created for user input and appending it accordingly
+    var createInput = document.createElement("input");
+    createInput.setAttribute("type", "text");
+    createInput.setAttribute("id", "initials");
+    createInput.textContent = "";
+  
+    questionsDiv.appendChild(createInput);
+  
+    // Variable for creating a user submit button once all requested data is entered
+    var createSubmit = document.createElement("button");
+    createSubmit.setAttribute("type", "submit");
+    createSubmit.setAttribute("id", "Submit");
+    createSubmit.textContent = "Submit";
+  
+    questionsDiv.appendChild(createSubmit);
+  
+    // Event listener to capture initials and local storage for user initials and score
+    createSubmit.addEventListener("click", function () {
+      var initials = createInput.value;
+  
+      if (initials === null) {
+        console.log("No value entered!");
+      } else {
+        var finalScore = {
+          initials: initials,
+          score: timeRemaining,
+        };
+        console.log(finalScore);
+        var allScores = localStorage.getItem("allScores");
+        if (allScores === null) {
+          allScores = [];
+        } else {
+          allScores = JSON.parse(allScores);
+        }
+        allScores.push(finalScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+        // Takes user to score page
+        window.location.replace("./highscores.html");
+      }
     });
-})
-
-
+  }
