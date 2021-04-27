@@ -107,14 +107,7 @@ questionIndex++;
 if (questionIndex >= questions.length) {
   // quizEnd will append last page with user stats
   quizEnd();
-  createDiv.textContent =
-    "Quiz Complete!" +
-    " " +
-    "You got  " +
-    score +
-    "/" +
-    questions.length +
-    " Correct!";
+  createDiv.textContent = "Quiz Complete!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
 } else {
   render(questionIndex);
 }
@@ -194,7 +187,7 @@ function quizEnd() {
         allScores.push(finalScore);
         var newScore = JSON.stringify(allScores);
         localStorage.setItem("allScores", newScore);
-        // Takes user to score page
+        // Takes user to high score page
         window.location.replace("./highscores.html");
       }
     });

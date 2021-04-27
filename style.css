@@ -43,20 +43,21 @@
  #questionsDiv {
      margin: 20px;
      cursor: grab;
+     align-items: center;
  }
  
  #currentTime {
      float: right;
  }
  
- #goBack {
+ #returnHome {
      background-color: var(--buttonBlue);
      position: relative;
      padding: 10px;
      font-size: 20px;
      color: white;
      top: 30%;
-     left: 55%;
+     left: 53%;
      width: auto;
      text-align: center;
      text-decoration: none;
@@ -74,7 +75,7 @@
      font-size: 20px;
      color: white;
      top: 30%;
-     right: 10%;
+     right: 22%;
      text-align: left;
      align-self: flex-start;
  }
@@ -114,7 +115,7 @@
      text-align: center;
      text-shadow: 1px 2px #007296;
     font-weight: bolder;
-    font-size: 25px;
+    font-size: 35px;
     text-decoration: underline;
  }
  
@@ -136,51 +137,5 @@
      border-top: 1px solid lightgray;
  }
  
- /* Start media queries */
- /* A Media Query max-width: 786px */
- @media screen and (max-width: 786px) {
- /* Resized content to fit 786px  */
- body {
-     max-width: 786px;
- }
- /* Resized main-content to fit 786px  */
- #container {
- position: absolute;
- left: 20%;
- }
- 
- a {
- margin-left: 20%;
- 
- }
- #goBack {
-     
-     position: relative;
-     left: 55%;
- }
- 
- #clear {
-     
-     position: relative;
-     right: 5%;
-     
- }
- }
- 
- /* A Media Query max-width: 640px */
- @media screen and (max-width: 640px) {
- /* Resized content to fit 640px  */
- body {
-     min-width: 640px;
- }
- /* Resized main-content to fit 640px  */
- #container {
- position: absolute;
- left: 10%;
- }
- a {
-   margin-left: 10%;
- }
  
  
- }

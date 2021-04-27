@@ -1,13 +1,13 @@
 var highScore = document.querySelector("#highScore");
-var clear = document.querySelector("#clear");
-var goBack = document.querySelector("#goBack");
+var clearScores = document.querySelector("#clear");
+var returnHome = document.querySelector("#returnHome");
 
 // Event listener to clear scores on user button click
-clear.addEventListener("click", function () {
+clearScores.addEventListener("click", function () {
     localStorage.clear();
     location.reload();
 });
-// Retrieves data from local storage
+// Retrieves data from local storage and creates new list item to display score and initials
 var allScores = localStorage.getItem("allScores");
 allScores = JSON.parse(allScores); 
 
@@ -21,7 +21,7 @@ if (allScores !== null) {
 
     }
 }
-// Event listener to move user back to index.html page
-goBack.addEventListener("click", function () {
+// Event listener to move user back to the home page
+returnHome.addEventListener("click", function () {
     window.location.replace("./index.html");
 });
