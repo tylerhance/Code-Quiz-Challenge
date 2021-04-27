@@ -1,28 +1,15 @@
 // HTML elements gathered for DOM manipulation
-var quizEl = document.getElementById("quiz");
-var resultsEl = document.getElementById("results");
-var finalScoreEl = document.getElementById("final-score");
-var quizCompleteEl = document.getElementById("quizComplete");
-var timer = document.getElementById("currentTime");
-var startButtonEl = document.getElementById("start-button");
-var welcomePageEl = document.getElementById("welcome-page");
-var highScoreContainerEl = document.getElementById("hsContainer");
-var highScoresEl = document.getElementById("highScores");
-var highScoreBtn = document.getElementById("#hs-button");
-var userHighScoreInput = document.getElementById("initials");
-var highScoreDisplayName = document.getElementById("hs-initials");
-var endQuizButton = document.getElementById("endQuizButton");
-var submitScoreButton = document.getElementById("submitScore");
-var displayHighScore = document.getElementById("userHighScore");
-var questionsEl = document.getElementById("questions");
-var buttonA = document.getElementById("A");
-var buttonB = document.getElementById("B");
-var buttonC = document.getElementById("C");
-var buttonD = document.getElementById("D");
-var checkAnswer = document.querySelectorAll(".checkAnswer");
-//var replayQuiz = document.querySelectorAll(".replayQuiz");
-var clearScore = document.querySelectorAll(".clearScore");
-var mostRecentScore = localStorage.getItem("mostRecentScore");
+// Declared variables and HTML elements for DOM manipulation
+var score = 0;
+var questionIndex = 0;
+var currentTime = document.querySelector("#currentTime");
+var timer = document.querySelector("#startTime");
+var questionsDiv = document.querySelector("#questionsDiv");
+var container = document.querySelector("#container");
+var secondsLeft = 60;
+var holdInterval = 0;
+var penalty = 10;
+var ulCreate = document.createElement("ul");
 
 // Global variables
 var currentQuestionIndex = 0;
