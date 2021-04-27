@@ -1,6 +1,6 @@
 // HTML elements gathered for DOM manipulation
 var quizEl = document.getElementById("quiz");
-var determineEl = document.getElementById("determine");
+var resultsEl = document.getElementById("results");
 var finalScoreEl = document.getElementById("final-score");
 var quizCompleteEl = document.getElementById("quizComplete");
 var timer = document.getElementById("currentTime");
@@ -22,6 +22,7 @@ var buttonD = document.getElementById("D");
 var checkAnswer = document.querySelectorAll(".checkAnswer");
 //var replayQuiz = document.querySelectorAll(".replayQuiz");
 var clearScore = document.querySelectorAll(".clearScore");
+var mostRecentScore = localStorage.getItem("mostRecentScore");
 
 // Global variables
 var currentQuestionIndex = 0;
@@ -116,7 +117,6 @@ function startQuiz() {
     // Saves the user input for initials and their high score into local storage, then projects the high scores.    
         quizCompleteEl.style.display = "none";
         highScoreContainerEl.style.display = "flex";
-        highScoresEl.style.display = "block";
         endQuizButton.style.display = "flex";
 
         savedHighScores.push(currentHighScore);
@@ -193,4 +193,5 @@ checkAnswer.forEach(function (answer){
         verifyAnswer(answerText);
     });
 })
+
 

@@ -1,59 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="jass.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Major+Mono+Display&family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <title>Coding Assessment Quiz</title>
-</head>
-    <header>
-    <div id="container">
-             
-        <section id="welcome-page">
-            <h1>Welcome to the Coding Assessment Quiz! This is a timed quiz to test
-                your coding knowledge. Be warned, an incorrect answer will result in a penalty.
-                Hit the 'Start' button to begin. Good luck!</h1>
-                <button id="start-button">Start Quiz</button>
-                <button id="hs-button">High Scores</button>
-        </section>
-</header>
-<!-- Container for holding all the questions/timer and determining if answer is correct or not -->
-    <section id="quiz">
-        <div id="currentTime">Time :</div>
-        <div id="questions"><p>Questions</p></div>
-            <button id="A" class="checkAnswer">A</button>
-            <button id="B" class="checkAnswer">B</button>
-            <button id="C" class="checkAnswer">C</button>
-            <button id="D" class="checkAnswer">D</button>
-        <div id="determine"></div>
-    </section>
-<!-- Container created for entering initials and submitting user score -->
-<section id="quizComplete">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Code Quiz</title>
+  </head>
 
-    <div id="final-score"></div>
-</section>
-<!--- Created id for keeping track of user high scores -->
-<section id="hsContainer">
-    <div id="highScores">
-        <div id="hs-header">
-            <h3>User Initials:</h3>
+  <body>
+      
+    <a href="highscores.html">View Highscores</a>
+
+    <section>
+       <!-- div id is for the entire quiz container -->
+      <div id="container">
+        <!-- ID created for the timer -->
+        <div id="currentTime"></div>
+        <!--Div represents the quiz questions content -->
+        <div id="questionsDiv">
+          <h1>Coding Quiz Challenge</h1>
+          <p>
+            Welcome! Answer the following code related questions within the time
+            limit. An incorrect answer will result in a penalty to your time and
+            overall score! Best of luck!
+          </p>
+        <!-- Shows the unordered list of questions/choices -->
+          <ul id="choicesUl"></ul>
+          <!-- Start button to initiate quiz -->
+          <button id="startTime">Start Quiz</button>
         </div>
-        <div id="userHighScore"></div>
-        <div id="hs-initials"></div>
-        <input type="text" size="50" placeholder="Enter initials here" name="initials" id="initials"/>
-    <button id="submitScore">Submit Score</button>
-    </div>
-</section>
-<!-- Container for the end of the quiz; Asking user to submit score/play again -->
-    <section id="endQuizButton">
-        <button id="replay" class="replayQuiz">Play Again</button>
-        <button id="clearScore" class="clearScore">Clear High Scores</button>
-    </section>        
-</div>
-<script src="script.js"></script>
-</body>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
 </html>
