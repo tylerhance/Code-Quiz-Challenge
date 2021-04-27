@@ -8,6 +8,6 @@
 
 <h2>Links</h2>
 
-* Check out the deployed Code Quiz @ ----
+* Check out the deployed Code Quiz @ https://tylerhance.github.io/Code-Quiz-Challenge/
 
 ![CodeAssessmentQuizScreenshot](./images/screenshot.png)
