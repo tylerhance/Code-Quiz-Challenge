@@ -1,4 +1,4 @@
-# Homework04-Code-Assessment-Quiz
+# Code-Quiz-Challenge
 
 <h2>Description</h2>
 
