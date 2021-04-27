@@ -45,20 +45,22 @@ var questions = [
 //console.log(questions[3].question);
 ///console.log(questions[3].answer);
 
-// Function for moving through the questions array and generate the questions and answers.
-function generateQuizQuestion(){
-    quizCompleteEl.style.display = "none";
-    if (currentQuestionIndex === questions.length){
-        return showScore();
+// Function for triggering timer countdown on button click
+timer.addEventListener("click", function () {
+    if (holdInterval === 0) {
+      holdInterval = setInterval(function () {
+        secondsLeft--;
+        currentTime.textContent = "Time: " + secondsLeft;
+  
+        if (secondsLeft <= 0) {
+          clearInterval(holdInterval);
+          quizEnd();
+          currentTime.textContent = "Time's up!";
+        }
+      }, 1000);
     }
-    console.log(questions[currentQuestionIndex])
-    //quizCompleteEl.style.display = "none";
-    questionsEl.innerHTML = "<p>" + questions[currentQuestionIndex].question + "</p>"
-    buttonA.innerHTML = questions[currentQuestionIndex].choices[0];
-    buttonB.innerHTML = questions[currentQuestionIndex].choices[2];
-    buttonC.innerHTML = questions[currentQuestionIndex].choices[3];
-    buttonD.innerHTML = questions[currentQuestionIndex].choices[1];
-    };
+    render(questionIndex);
+  });
 
 // Function to start quiz and starts timer. Once clicked, the start button is hidden and the first question is displayed.
 function startQuiz() {
